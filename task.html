@@ -13,7 +13,7 @@
         <h3 class="text-center text-danger">Employee Database</h3> 
     </div> 
  
-    <table class="table table-success table-bordered border-danger"> 
+    <table class="table table-success table-bordered border-danger table-striped"> 
         <thead> 
           <tr> 
             <th class="text-center" scope="col">ID</th> 
@@ -31,6 +31,20 @@
         <tbody id="table"></tbody> 
       </table> 
       <div id="details" class="d-flex justify-content-center"></div> 
+
+
+      <div class="container py-5"> 
+        <h3 class="text-center text-danger">Pokemon Database</h3>
+        <table class="table table-warning table-bordered border-dark table-striped"> 
+            <thead> 
+                <tr> 
+                    <th class="text-center" scope="col">Name</th> 
+                    <th class="text-center" scope="col">URL</th> 
+                </tr> 
+            </thead> 
+            <tbody id="type"></tbody> 
+        </table> 
+      </div>
  
  
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="crossorigin="anonymous"></script> 
@@ -73,7 +87,7 @@
                                 <li class="list-group-item list-group-item-primary"><strong>Phone: </strong>${userDetail.phone}</li> 
                                 <li class="list-group-item list-group-item-primary"><strong>Address: </strong>${userDetail.address.street}</li> 
                                 <li class="list-group-item list-group-item-primary"><strong>City: </strong>${userDetail.address.city}</li> 
-                                <li class="list-group-item list-group-item-primary"><strong>Company:</strong>${userDetail.company.name}</li> 
+                                <li class="list-group-item list-group-item-primary"><strong>Company: </strong>${userDetail.company.name}</li> 
                                 <li class="list-group-item list-group-item-primary"><strong>Web-site: </strong>${userDetail.website}</li> 
                             </ul> 
                         </div>     
@@ -83,6 +97,27 @@
                 }); 
             }); 
         }); 
+
+
+        $.get('https://pokeapi.co/api/v2/berry', function(data){ 
+            const body = $('#type'); 
+                data.results.forEach( pokemon => { 
+                    const type = ` 
+                    <tr class="text-center"> 
+                        <td>${pokemon.name}</td> 
+                        <td>${pokemon.url}</td> 
+                    </tr> 
+                `; 
+                body.append(type); 
+            }); 
+            console.log(data.results);    
+        }); 
+ 
+ 
+         
+        $.get('https://pokeapi.co/api/v2/berry', function(data){ 
+            console.log(data); 
+        });
  
  
  
